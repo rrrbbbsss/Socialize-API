@@ -1,0 +1,26 @@
+{
+  "name": "socialize-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrrbbbsss/Socialize-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrrbbbsss/Socialize-API/issues"
+  },
+  "homepage": "https://github.com/rrrbbbsss/Socialize-API#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "luxon": "^3.0.4",
+    "mongoose": "^6.6.2"
+  }
+}
