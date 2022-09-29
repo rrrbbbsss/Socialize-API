@@ -9,8 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(routes);
 
-// log mongo queries
-mongodb.set("debug", true);
-
-// start express
-app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+// connect to db and start express
+mongodb.once("open", () => {
+  app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+});
