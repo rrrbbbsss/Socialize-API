@@ -13,7 +13,7 @@ router
 
 // /api/users/<user-id>/friends/<friend-id>
 router
-  .route("/")
+  .route("/:userId/friends/:friendId")
   .post(UserController.addFriend)
   .delete(UserController.removeFriend);
 

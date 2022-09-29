@@ -11,11 +11,11 @@ const ThoughtController = {
       });
   },
   getOne(req, res) {
-    Thought.findOne({ _id: req.params.userId })
+    Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
       .then((dbData) =>
         !dbData
-          ? res.status(404).json({ message: "No user found with this id" })
+          ? res.status(404).json({ message: "No Thought found with this id" })
           : res.json(dbData)
       )
       .catch((err) => {
@@ -88,7 +88,7 @@ const ThoughtController = {
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { friends: req.params.reactionId } },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { new: true }
     )
       .then((dbData) => {
