@@ -23,17 +23,41 @@ const ThoughtController = {
         res.status(400).json("there was an error");
       });
   },
-  // todo need to push this to associated user's thoughts array field
   create(req, res) {
     Thought.create(req.body)
-      .then((dbData) => res.json(dbData))
+      .then(({ _id }) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $push: { thoughts: _id } },
+          { new: true }
+        );
+      })
+      .then((dbData) =>
+        !dbData
+          ? res.status(404).json({ message: "No thought found with this id" })
+          : res.json(dbData)
+      )
       .catch((err) => {
         console.log(err);
         res.status(400).json("there was an error");
       });
   },
-  // todo
-  update(req, res) {},
+  update(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $push: { reactions: req.body } },
+      { new: true, runValidators: true }
+    )
+      .then((dbData) => {
+        !dbData
+          ? res.status(404).json({ message: "No user found with this id" })
+          : res.json(dbData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json("there was an error");
+      });
+  },
   // todo
   delete(req, res) {},
   // todo
