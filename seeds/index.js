@@ -15,8 +15,7 @@ mongodb.once("open", async () => {
     // seed thoughts
     await Thought.create(thoughtSeeds);
 
-    // seed thoughts
-    // todo
+    // todo make seeds richer
   } catch (err) {
     console.error(err);
     process.exit(1);

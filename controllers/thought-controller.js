@@ -69,7 +69,6 @@ const ThoughtController = {
         res.status(400).json("there was an error");
       });
   },
-  // todo
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -86,7 +85,6 @@ const ThoughtController = {
         res.status(400).json("there was an error");
       });
   },
-  // todo (also update route for reactionId)
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
