@@ -43,11 +43,10 @@ const ThoughtController = {
       });
   },
   update(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $push: { reactions: req.body } },
-      { new: true, runValidators: true }
-    )
+    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, req.body, {
+      new: true,
+      runValidators: true,
+    })
       .then((dbData) => {
         !dbData
           ? res.status(404).json({ message: "No user found with this id" })
@@ -58,12 +57,52 @@ const ThoughtController = {
         res.status(400).json("there was an error");
       });
   },
+  delete(req, res) {
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+      .then((dbData) => {
+        !dbData
+          ? res.status(404).json({ message: "No thought found with this id" })
+          : res.json(dbData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json("there was an error");
+      });
+  },
   // todo
-  delete(req, res) {},
-  // todo
-  addReaction(req, res) {},
-  // todo
-  removeReaction(req, res) {},
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $push: { reactions: req.body } },
+      { new: true, runValidators: true }
+    )
+      .then((dbData) => {
+        !dbData
+          ? res.status(404).json({ message: "No Thought found with this id" })
+          : res.json(dbData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json("there was an error");
+      });
+  },
+  // todo (also update route for reactionId)
+  removeReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { friends: req.params.reactionId } },
+      { new: true }
+    )
+      .then((dbData) => {
+        !dbData
+          ? res.status(404).json({ message: "No Thought found with this id" })
+          : res.json(dbData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json("there was an error");
+      });
+  },
 };
 
 module.exports = ThoughtController;
