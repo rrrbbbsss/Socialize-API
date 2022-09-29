@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { User } = require(".");
 
 // good enough regex for email validation: https://emailregex.com
 const emailRegex =

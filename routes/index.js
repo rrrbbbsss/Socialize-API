@@ -1,7 +1,8 @@
 const router = require("express").Router();
-// todo import api routes
+const apiRoutes = require("./api");
 
-// todo use api routes
+// use api routes
+router.use("/api", apiRoutes);
 
 // default response
 router.use((req, res) => {
