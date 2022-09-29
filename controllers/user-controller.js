@@ -1,7 +1,7 @@
 const { User, Thought } = require("../models");
 
 const UserController = {
-  getAllUsers(req, res) {
+  getAll(req, res) {
     res.json("todo");
   },
 };
