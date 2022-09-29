@@ -1,6 +1,7 @@
-require("luxon");
+const { DateTime } = require("luxon");
 
-// todo use luxon to format date
-formatDate = (x) => x;
+formatDate = (x) => {
+  return new DateTime(x).toLocaleString(DateTime.DATETIME_FULL);
+};
 
 module.exports = formatDate;

@@ -13,6 +13,9 @@ mongodb.once("open", async () => {
     await User.create(userSeeds);
 
     // seed thoughts
+    await Thought.create(thoughtSeeds);
+
+    // seed thoughts
     // todo
   } catch (err) {
     console.error(err);
